@@ -64,6 +64,8 @@ GithubApps.configure do |config|
 end
 ```
 
+Whichever class you specify will use the class method `.call` and pass in information for you to process. Since these arguments might change frequently in early development, it might be worth looking at the [`RequestDelegator`](./app/services/github_apps/request_delegator.rb) and the [`DefaultHandler`](./app/services/github_apps/default_handler.rb).
+
 ## Contributing
 
 Pull Requests welcome! Mention [@kylemacey](https://github.com/kylemacey) to get a review

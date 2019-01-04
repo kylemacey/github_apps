@@ -8,10 +8,20 @@ module GithubApps
       described_class.call("fake", "event", {})
     end
 
-    it "calls the appropriate service" do
-      expect(IssuesOpened).to receive(:call)
+    context "with custom configuration" do
+      let(:handlers) do
+        { "issues/opened" => IssuesOpened }
+      end
 
-      described_class.call("issues", "opened", {})
+      before do
+        allow(GithubApps.config).to receive(:handlers).and_return(handlers)
+      end
+
+      it "calls the appropriate service" do
+        expect(IssuesOpened).to receive(:call)
+
+        described_class.call("issues", "opened", {})
+      end
     end
   end
 end

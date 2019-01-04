@@ -19,9 +19,8 @@ module GithubApps
     private
 
     def handler_class
-      GithubApps.const_get("#{hook.capitalize}#{action.capitalize}")
-    rescue NameError
-      DefaultHandler
+      handler_path = File.join(hook, action)
+      GithubApps.config.handlers[handler_path]
     end
   end
 end

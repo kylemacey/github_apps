@@ -1,7 +1,7 @@
 module GithubApps
   class Config
     attr_accessor :webhook_secret, :private_key, :private_key_path,
-      :app_identifier
+      :app_identifier, :handlers
 
     def webhook_secret
       @webhook_secret ||= ENV["GITHUB_APPS_WEBHOOK_SECRET"]
@@ -17,6 +17,10 @@ module GithubApps
 
     def app_identifier
       @app_identifier ||= ENV["GITHUB_APPS_APP_IDENTIFIER"]
+    end
+
+    def handlers
+      @handlers ||= Hash.new(DefaultHandler)
     end
   end
 end

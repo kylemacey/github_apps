@@ -45,28 +45,22 @@ end
 
 ## Usage
 
-Handle webhooks by creating service objects in `app/services/github_apps/`
+Configure GithubApps to respond to webhook events in your initializer.
 
 ```ruby
-module GithubApps
-  class IssuesOpened
-    attr_reader :hook, :action, :data, :client
+GithubApps.configure do |config|
+  config.handlers["issues/opened"] = IssuesOpened
+end
+```
 
-    def initialize(hook, action, data, client)
-      @hook = hook
-      @action = action
-      @data = data
-      @client = client
-    end
+If you override the entire configuration hash, it's a good idea to specify a default.
 
-    def self.call(*args)
-      new(*args).call
-    end
+```ruby
+GithubApps.configure do |config|
+  config.handlers = { "issues/opened" => IssuesOpened }
 
-    def call
-      # Do stuff here...
-    end
-  end
+  # Use github_apps default event handler which logs unhandled webhooks
+  config.handlers.default(GithubApps::DefaultHandler)
 end
 ```
 

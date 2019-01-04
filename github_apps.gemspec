@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.version     = GithubApps::VERSION
   spec.authors     = ["Kyle Macey"]
   spec.email       = ["kylemacey@github.com"]
-  spec.homepage    = "https:TODO.example.com"
-  spec.summary     = "A quick way to hook your app up to GitHub Apps"
+  spec.homepage    = "https://github.com/kylemacey/github_apps"
+  spec.summary     = "A quick way to get started using GitHub Apps with your Rails app"
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
